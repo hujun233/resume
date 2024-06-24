@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>邀请函链接</title>
+    <meta charset="UTF-8">
+<!--    <script src="jquery-3.7.1.slim.min.js"></script>-->
+    <script src="jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="mui/dist/css/mui.min.css">
+    <script src="mui/dist/js/mui.min.js"></script>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 100px;
+        }
+
+        .input-field {
+            width: 300px;
+            padding: 10px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        .submit-btn {
+            padding: 10px 20px;
+        }
+
+        @media (max-width: 600px) {
+            .input-field, .submit-btn {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+<h2>点击提交后等待1-5秒</h2>
+<div class="container">
+    <form id="post_form">
+        <label>
+            <input class="input-field" type="email" name="address" placeholder="收件人邮箱"><br>
+            <input class="input-field" type="text" name="uname" placeholder="收件人姓名"><br>
+            <input class="input-field" type="text" name="uurl" placeholder="邀请链接"><br>
+            <input class="input-field" type="email" name="cc" placeholder="抄送邮箱" ><br>
+            <button class="submit-btn" type="submit">提交</button>
+        </label>
+    </form>
+</div>
+</body>
+<script type="application/javascript">
+    $('#post_form').submit(function(e) {
+        e.preventDefault();
+        var formData = $(this).serialize();
+        console.log(formData);
+        jQuery.post('email.php',formData,function (data) {
+            console.log(data);
+            mui.alert(data,'结果','确定');
+        });
+    });
+
+
+
+
+</script>
+
+</html>
